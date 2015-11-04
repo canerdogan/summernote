@@ -1,51 +1,68 @@
 # Summernote
-Super Simple WYSIWYG Editor on Bootstrap(3.0 and 2.x).
 
-[![Build Status](https://secure.travis-ci.org/HackerWins/summernote.png)](http://travis-ci.org/HackerWins/summernote)
+Super simple WYSIWYG Editor using Bootstrap (3.0 and 2.x).
+
+[![Build Status](https://secure.travis-ci.org/summernote/summernote.png)](http://travis-ci.org/summernote/summernote)
+[![npm version](https://badge.fury.io/js/summernote.svg)](http://badge.fury.io/js/summernote)
+[![Dependency Status](https://gemnasium.com/summernote/summernote.svg)](https://gemnasium.com/summernote/summernote)
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/summernoteis.svg)](https://saucelabs.com/u/summernoteis)
 
 ### Summernote
-Summernote is a javascript program that helps you to create WYSIWYG Editor on web.
+Summernote is a JavaScript library that helps you create WYSIWYG editors online.
 
-Demo Page: http://hackerwins.github.io/summernote/
+Home Page: http://summernote.org
 
 ### Why Summernote?
 
-Summernote has something specials no like others.
+Summernote has a few special features:
 
-Simple UI, Interative WYSIWYG editing, easy integrate Backend server and so much others.
+* Paste images from clipboard
+* Saves images directly in the content of the field using base64 encoding, so you don't need to implement image handling at all
+* Simple UI
+* Interactive WYSIWYG editing
+* Handy integration with server
 
 #### Inspired by
-* Gmail WYSIWYG Editor (http://www.gmail.com)
+* Gmail's WYSIWYG editor (http://www.gmail.com)
 * Redactor (http://imperavi.com/redactor/)
 
-### Easy to install
+### Installation and dependencies
 
-Summernote uses opensouce libraries(jQuery, bootstrap, fontAwesome) 
+Summernote uses opensource libraries: [jQuery](http://jquery.com/), [Bootstrap](http://getbootstrap.com), [Font Awesome](https://github.com/FortAwesome/Font-Awesome).
 
-#### 01. include js/css
-Include Following code into `<head>` tag of your HTML:
+For [Meteor](http://github.com/meteor/meteor), just run `meteor add summernote:summernote`. More info in the [Meteor README](meteor/README.md).
+
+For other/no frameworks:
+
+#### 1. include JS/CSS
+
+Include the following code in the `<head>` tag of your HTML:
+
 ```html
-<!-- include libries(jQuery, bootstrap, fontawesome) -->
-<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.min.js"></script> 
-<!-- bootstrap v3 -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" />
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css" />
+<!-- include libraries(jQuery, bootstrap, fontawesome) -->
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 
 <!-- include summernote css/js-->
-<link rel="stylesheet" href="summernote.css" />
-<script type="text/javascript" src="summernote.min.js"></script>
+<link href="summernote.css" rel="stylesheet">
+<script src="summernote.min.js"></script>
 ```
-If your summernote download is placed in a different folder, don't forget to change file's paths.
 
-#### 02. target elements
-And place `div` tag to somewhere in the `body` tag. This element will be placed by the visual representation of the summernote.
+#### 2. target elements
+
+Then place a `div` tag somewhere in the `body` tag. This element will be replaced with the summernote editor.
+
 ```html
 <div id="summernote">Hello Summernote</div>
 ```
 
-#### 03. summernote
-Finally, run script after document ready.
+#### 3. summernote
+
+Finally, run this script after the DOM is ready:
+
 ```javascript
 $(document).ready(function() {
   $('#summernote').summernote();
@@ -53,91 +70,84 @@ $(document).ready(function() {
 ```
 
 ### API
-Get HTML `code` if you need.
+
+`code` - get the HTML source code underlying the text in the editor:
 
 ```javascript
 var sHTML = $('#summernote').code();
 ```
 
-`Destroy` summernote.
+`Destroy` summernote:
 
 ```javascript
 $('#summernote').destroy();
 ```
 
-#### Dependencies
-* jQuery: http://jquery.com/
-* bootstrap: http://twitter.github.io/bootstrap (both 2.x and 3.x)
-* fontAwesome: https://github.com/FortAwesome/Font-Awesome (both 3.x and 4.x)
+#### Warning - code injection
 
-### Supported platform
-* Modern Browser (Safari, Chrome, Firefox, Opera, Internet Explorer 9+)
-* OS (Windows, Mac)
+The code view allows the user to enter script contents. Make sure to filter/[sanitize the HTML on the server](https://github.com/search?l=JavaScript&q=sanitize+html). Otherwise, an attacker can inject arbitrary JavaScript code into clients.
+
+### Supported platforms
+
+Any modern browser: Safari, Chrome, Firefox, Opera, Internet Explorer 9+.
 
 ### Upcoming Features
-* Air Mode
-* Responsive Toolbar
-* Table: Handles(Sizing, Selection) and Popover
-* support IE8
-* Clipboard
-* Image Selection
+* Responsive toolbar
+* Table: Handles (sizing, selection) and popover
+* IE8 Support
+* Clipboard (you can paste images already)
+* Media object selection
 
-#### v0.5 2013-12-31
-* Support both Font-Awesome 3.x and 4.x
-* CodeMirror as Codeview
-* Bug fixes
 
-### Change Log
-
-#### v0.4 2013-11-01
-* `ADDED` Support both Bootstrap 3.0 and 2.x
-* `ADDED` Fullscreen
-* `ADDED` Code View
-* `ADDED` Image Upload callback
-
-#### v0.3 2013-09-01
-* `FIXED` bugs(image upload, fontsize, tab, recent color, ...)
-* `ADDED` help dialog(keyboard shortcut)
-* `ADDED` init options(event callbacks, custom toolbar)
-* `ADDED` resize bar
-* `ADDED` support IE8 Beta(some range bugs, can't insert Image)
-
-#### v0.2, 2013-08-01
-* `ADDED` undo/redo
-* `ADDED` image sizing handle and popover
-* `ADDED` support standalone css
-* `ADDED` support Multiple Editor
-* `REMOVED` jQuery.curstyles dependency
-
-#### v0.1, 2013-07-01
-* `ADDED` font style: size, color, bold, italic, underline, remove font style
-* `ADDED` para style: bullet, align, outdent, indent, line height
-* `ADDED` image: drag & drop, dialog
-* `ADDED` link: popover and dialog
-* `ADDED` table: create table with dimension picker
-
-### for Hacker
+### Developer information
 
 #### structure of summernote.js
 
 ```
-$.extend - Renderer (Markup)
-         \ EventHandler - Editor - Range (W3CRange extention)
-                                 \ Style (Style Getter and Setter)
-                                 \ History (Store on jQuery.data)
-                        \ Toolbar
-                        \ Popover
-                        \ Handle
-                        \ Dialog
-----------Common Utils----------
-Dom, List, Func
+summernote.js - Renderer.js (Generate markup) - Locale.js (Locale object)
+              ㄴEventHandler.js - Toolbar.js (Toolbar module)
+                                ㄴPopover.js (Popover module)
+                                ㄴHandle.js  (Handle module)
+                                ㄴDialog.js  (Dialog module)
+                                ㄴEditor.js  (Abstract editor module) - Style.js (Style Getter and Setter)
+                                                                      ㄴHistory.js (Store on jQuery.data)
+-----------------------------Core Script-----------------------------
+  agent.js  (agent information)
+  async.js  (aysnc utility)
+  key.js    (keycode object)
+  dom.js    (dom functions)
+  list.js   (list functions)
+  range.js  (W3CRange extention)
+---------------------------------------------------------------------
 ```
+
+#### document structure
+
+```
+ - body container: <div class="note-editable">, <td>, <blockquote>, <ul>
+ - block node: <div>, <p>, <li>, <h1>, <table>
+ - void block node: <hr>
+ - inline node: <span>, <b>, <font>, <a>, ...
+ - void inline node: <img>
+ - text node: #text
+```
+
+1. A body container has block node, but `<ul>` has only `<li>` nodes.
+2. A body container also has inline nodes sometimes. This inline nodes will be wraped with `<p>` when enter key pressed.
+4. A block node only has inline nodes.
+5. A inline nodes has another inline nodes
+6. `#text` and void inline node doesn't have children.
 
 #### build summernote
 ```bash
 # grunt-cli is need by grunt; you might have this installed already
 npm install -g grunt-cli
 npm install
+
+# build full version of summernote: dist/summernote.js
+grunt build
+
+# generate minified copy: dist/summernote.min.js, dist/summernote.css
 grunt dist
 ```
 At this point, you should now have a `build/` directory populated with everything you need to use summernote.
@@ -148,13 +158,26 @@ run tests with PhantomJS
 grunt test
 ```
 
+#### start local server for developing summernote.
+run local server with connect and watch.
+```bash
+grunt server
+# Open a browser on http://localhost:3000.
+# If you change source code, automatically reload your page.
+```
+
 #### Coding convention
 * JSHint: http://www.jshint.com/about/
-* JSHint rule: https://github.com/HackerWins/summernote/blob/master/.jshintrc
+* JSHint rule: https://github.com/summernote/summernote/blob/master/.jshintrc
+
+#### Contribution guide
+* Please read [CONTRIBUTING.md](https://github.com/summernote/summernote/blob/develop/CONTRIBUTING.md) before sending pull requests.
 
 ### Contacts
 * Email: susukang98@gmail.com
 * Twitter: http://twitter.com/hackerwins
+* Chat with us:
+[![Join the chat at https://gitter.im/summernote/summernote](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/summernote/summernote?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ### License
 summernote may be freely distributed under the MIT license.
